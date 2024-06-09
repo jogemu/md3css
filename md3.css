@@ -685,7 +685,7 @@ progress, meter { /* Progress indicators */
       border-color: var(--disabled12on38);
       --color: var(--on-surface);
       --ele: var(--ele0);
-      &::before, &::after { background-color: var(--color); }
+      span::before, span::after { background-color: var(--color); }
     }
 
     &:has(>input.elevated:not(disabled)) { --ele: var(--ele1); }
