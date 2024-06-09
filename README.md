@@ -2,7 +2,8 @@
 
 Pure CSS Material 3 Design with flexible icon placement. Leverages recent CSS features, including nesting to reduce redundancy, dynamic light-dark schemes with a wide color gamut and pseudo-classes that became part of Baseline as recently as May 2024. Change the hue of the color scheme, add a font or place an icon with just one CSS variable. Using inheritance, multiple elements can be influenced while combining stylesheets, classes and inline style.
 
-![Demo](https://gist.githubusercontent.com/jogemu/f0c63ab30f60218b31efb578acf4c81d/raw/7bbd4bf0120e2229d2e8e1a2f711816a472cb70d/md3css.svg)
+![Demo](https://gist.githubusercontent.com/jogemu/f0c63ab30f60218b31efb578acf4c81d/raw/md3css.svg)
+
 
 Common buttons are `<button>` or `<a>` within a `<fieldset>`. Use the respective button type in lower case as class and specify the optional leading icon by setting the CSS variable `--icon: url('/path/to/file.svg')` or `url('data:image/svg+xml;utf8,<svg>...</svg>')`. Since the image is used as a mask, the color of the image does not have to match the color scheme.
 
