@@ -140,12 +140,13 @@ header { /* Top app bar */
   h1 { font: var(--title-l); flex: 1; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 
   /* Icon button */
-  &>a, &>details>summary, &>details>summary + *>a {
+  &>a, &>button, &>[popover]>a {
     width: 1.5rem; aspect-ratio: 1; padding: .5rem; border-radius: 100%;
     margin-inline: -.5rem;
     overflow: hidden; user-select: none;
     text-align: center; line-height: 1.5rem;
     transition: background-color var(--tra);
+    border: none; background-color: transparent; box-sizing: content-box;
 
     &::before {
       display: block; height: 100%;
@@ -153,38 +154,19 @@ header { /* Top app bar */
       margin-bottom: 1rem;
     }
   }
-  &>a, &>details>summary, &>details>summary + * a {
+  &>a, &>button, &>[popover] a {
     &:hover           { background-color: color-mix(in oklch, var(--color)  8%, transparent); }
     &:focus, &:active { background-color: color-mix(in oklch, var(--color) 10%, transparent); }
   }
 
-  &>details { 
-    display: contents;
+  &>:popover-open {
+    width: 16rem; padding: .75rem 1rem; border-radius: .75rem;
+    background-color: var(--surface-container); color: var(--color);
+    border: none;
 
-    &>summary {
-      list-style-type: none;
-      
-      &+* {
-        position: absolute; top: 5rem; right: var(--main);
-        width: 16rem; padding: .75rem 1rem; border-radius: .75rem;
-        background-color: var(--surface-container); color: var(--color);
-        z-index: 2;
-
-        &>h2 { font: var(--title-s); margin: 0 0 .25rem; }
-        p { font: var(--body-m); margin: 0 0 .75rem; }
-        &>a { position: absolute; top: 1rem; right: 1.5rem; }
-      }
-    }
-
-    &[open]>summary::after { /* Scrim */
-      content: ''; display: block;
-      background-color: oklch(0 0 0 / .32);
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    }
-
-    @supports not (-moz-appearance: none) { /* Remove details slot from flex */
-      &:not([open])>summary { margin-inline-end: -2rem; }
-    }
+    &>strong { font: var(--title-s); margin: 0 0 .25rem; }
+    p { font: var(--body-m); margin: 0 0 .75rem; }
+    &>a { position: absolute; top: 1rem; right: 1.5rem; }
   }
 }
 
@@ -259,7 +241,7 @@ dialog { /* Dialogs */
   background-color: var(--surface-container); color: var(--on-surface);
   padding: 1.5rem; border-radius: 1.75rem;
   min-width: 17.5rem; max-width: 35rem;
-  z-index: 3; outline: 100vmax solid oklch(0 0 0 / .32);
+  &[open=noscript] { z-index: 3; outline: 100vmax solid oklch(0 0 0 / .4); }
   margin: 0; border: none;
 
   &>* { margin: 0 0 1rem; }
@@ -748,3 +730,5 @@ table, .list {
   a { text-decoration: none; }
   th { text-align: left; }
 }
+
+dialog::backdrop, :popover-open::backdrop { background-color: oklch(0 0 0 / .4); }
