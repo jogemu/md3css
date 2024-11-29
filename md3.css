@@ -42,7 +42,6 @@
   --surface-container:      light-dark(oklch(.95 .02 var(--hue)), oklch(.24 .01 var(--hue)));
   --surface-container-low:  light-dark(oklch(.97 .01 var(--hue)), oklch(.23 .01 var(--hue)));
 
-
   --background:             var(--surface);
   --on-background:          var(--on-surface);
 
@@ -52,8 +51,6 @@
   --inverse-surface:        light-dark(oklch(.31 .01 var(--hue)), oklch(.91 .01 var(--hue)));
   --inverse-on-surface:     light-dark(oklch(.96 .01 var(--hue)), oklch(.31 .01 var(--hue)));
   --inverse-primary:        light-dark(oklch(.83 .09 var(--hue)), oklch(.50 .13 var(--hue)));
-  --surface-tint:           var(--primary);
-  --surface-tint-color:     var(--primary);
 
   --disabled12on38: color-mix(in oklch, var(--on-surface)  32%, transparent);
 }
@@ -120,7 +117,7 @@ main {
 p  { text-align: justify; }
 hr { border: none; border-top: .0625rem solid var(--outline-variant); }
 
-a, button, label:has(input, textarea, select)>span, header>details>summary { /* Icons */
+a, button, label:has(input, textarea, select)>span { /* Icons */
   &::before, &::after {
     mask-size: contain; mask-mode: alpha; mask-repeat: no-repeat;
     content-visibility: hidden;
