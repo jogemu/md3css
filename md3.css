@@ -132,7 +132,7 @@ header { /* Top app bar */
   background-color: var(--surface-container); color: var(--color);
   height: 4rem; padding-inline: var(--main);
   display: flex; align-items: center; gap: 1.5rem;
-  z-index: 2; box-shadow: var(--ele2);
+  z-index: 2;
 
   h1 { font: var(--title-l); flex: 1; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 
@@ -167,11 +167,24 @@ header { /* Top app bar */
   }
 }
 
+@supports (animation-timeline: scroll()) {
+  header {
+    animation: sticky-header .2s ease-in-out forwards;
+    animation-timeline: scroll();
+    animation-range: 0 1px;
+  }
+
+  @keyframes sticky-header {
+    from { background-color: transparent; }
+    to { }
+  }
+}
+
 nav { /* Navigation bar */
   position: fixed; bottom: 0; left: 0; right: 0;
   background-color: var(--surface-container); color: var(--on-surface);
   padding-inline: var(--main);
-  z-index: 2; box-shadow: var(--ele2);
+  z-index: 2;
 
   display: flex; flex-direction: row; align-items: center; gap: .5rem;
   justify-content: space-between;
