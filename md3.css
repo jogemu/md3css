@@ -111,7 +111,7 @@ main {
   h5 { font: var(--title-m); }
   h6 { font: var(--body-l); }
 
-  &>.cards { margin-inline: max(-16rem, calc(1rem - var(--main))); }
+  &>.cards, &>.table { margin-inline: max(-16rem, calc(1rem - var(--main))); }
 }
 
 p  { text-align: justify; }
@@ -723,22 +723,36 @@ progress, meter { /* Progress indicators */
   }
 }
 
-table, .list {
-  display: table; border-collapse: collapse; width: 100%; margin-inline: auto;
+.table {
+  border-collapse: collapse;
+  display: block; max-height: 60vh; overflow: auto;
+  border-radius: 0.75rem; border: 0.0625rem solid var(--tertiary-container);
+
   &>*:not(caption, thead, tbody, tfoot, colgroup), &>thead>*, &>tbody>*, &>tfoot>* {
     display: table-row; color: inherit;
     &>* {
       display: table-cell; padding: .5rem; color: inherit;
-      /* border-bottom: 0.0625rem solid var(--outline); */
+      border-bottom: 0.0625rem solid var(--tertiary-container);
       &:first-child { padding-left: 1rem; }
-      &:last-child  { padding-right: 1rem; }
+      &:last-child  { padding-right: 1rem; width: 100%; }
     }
-    /* &:last-child>* { border-bottom: none; } */
-    &:hover { background-color: color-mix(in oklch, var(--on-surface)  8%, transparent); }
-    &:focus-within { background-color: color-mix(in oklch, var(--on-surface) 10%, transparent); }
+    &:last-child>* { border-bottom: none; }
+    &:not(.thead):not(.tfoot) {
+      &:hover { background-color: color-mix(in oklch, var(--on-tertiary-container)  8%, transparent); }
+      &:focus-within { background-color: color-mix(in oklch, var(--on-tertiary-container) 10%, transparent); }      
+    }
   }
   a { text-decoration: none; }
   th { text-align: left; }
+
+  thead, tfoot, .thead, .tfoot {
+    background-color: var(--tertiary-container);
+    color: var(--on-tertiary-container);
+    z-index: 1;
+    position: sticky;
+  }
+  thead, .thead { top: 0; }
+  tfoot, .tfoot { bottom: 0; }
 }
 
 dialog::backdrop, :popover-open::backdrop { background-color: oklch(0 0 0 / .4); }
