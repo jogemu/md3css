@@ -96,7 +96,6 @@ body {
   background-color: var(--background); color: var(--on-background);
   font: var(--body-m);
   margin: 0;
-  min-height: 100vh;
 }
 
 main {
@@ -128,7 +127,7 @@ a, button, label:has(input, textarea, select)>span { /* Icons */
 
 header { /* Top app bar */
   --color: var(--on-surface);
-  position: sticky; top: 0; left: 0; right: 0;
+  position: sticky; top: 0;
   background-color: var(--surface-container); color: var(--color);
   height: 4rem; padding-inline: var(--main);
   display: flex; align-items: center; gap: 1.5rem;
@@ -181,9 +180,9 @@ header { /* Top app bar */
 }
 
 nav { /* Navigation bar */
-  position: fixed; bottom: 0; left: 0; right: 0;
+  position: sticky; bottom: 0;
   background-color: var(--surface-container); color: var(--on-surface);
-  padding-inline: var(--main);
+  padding-inline: var(--main); margin-block-start: auto;
   z-index: 2;
 
   display: flex; flex-direction: row; align-items: center; gap: .5rem;
@@ -246,8 +245,14 @@ nav { /* Navigation bar */
   }
 }
 
+body:has(nav) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 dialog { /* Dialogs */
-  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
   background-color: var(--surface-container); color: var(--on-surface);
   padding: 1.5rem; border-radius: 1.75rem;
   min-width: 17.5rem; max-width: 35rem;
