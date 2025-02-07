@@ -101,7 +101,10 @@ body {
 main {
   margin-inline: var(--main);
 
-  & > * { margin-block: .5rem; }
+  & > *, & > form > * {
+    margin-block: .5rem;
+    &:is(fieldset) { margin-block: 0; }
+  }
 
   h1 { font: var(--display-l); }
   h2 { font: var(--display-m); }
@@ -263,7 +266,7 @@ dialog { /* Dialogs */
   &>img+h2 { text-align: center; }
   &>h2 { font: var(--headline-s); }
   &>p { font: var(--body-m); color: var(--on-surface-variant); }
-  &>fieldset:last-child { flex-direction: row-reverse; margin: 1.5rem 0 0; }
+  &>fieldset:last-child { flex-direction: row-reverse; margin-top: 1rem; }
 }
 
 .cards { /* Cards */
@@ -298,9 +301,10 @@ dialog { /* Dialogs */
 }
 
 fieldset { /* Common buttons */
-  border: none; margin: -.5rem; padding: .5rem;
+  border: none; margin: -.5rem -1rem; padding: .5rem 1rem;
   display: flex; gap: .5rem;
   overflow-x: auto; contain: inline-size;
+  transform: translateX(0); /* Prevent parent overflow */
 
   a, button {
     display: inline-flex; align-items: center; box-sizing: border-box;
@@ -713,8 +717,10 @@ progress, meter { /* Progress indicators */
 }
 
 .segmented { /* Segmented buttons */
-  display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr; margin-left: 0.0625rem; gap: 0;
+  display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0;
   contain: inherit;
+
+  &+.segmented { margin-left: 0.0625rem; }
 
   &>label {
     --color: var(--on-surface);
