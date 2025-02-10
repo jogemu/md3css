@@ -227,7 +227,7 @@ nav { /* Navigation bar */
         &:hover::after               { box-shadow: inset 0 4rem color-mix(in oklch, var(--color)  8%, transparent); }
         &:focus, &:active { &::after { box-shadow: inset 0 4rem color-mix(in oklch, var(--color) 10%, transparent); } }
 
-        &:not([href]), &[href='.'], &:target { /* Active */
+        &[href='.'], &[active] { /* Active */
           --color: var(--on-surface);
           --background-color: var(--secondary-container);
         }
