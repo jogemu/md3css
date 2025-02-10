@@ -652,7 +652,7 @@ progress, meter { /* Progress indicators */
 }
 
 .chips, .segmented { /* Chips */
-  &>label {
+  &>label, &>a, &>a:not(.elevated):not(.filled):not(.tonal):not(.outlined):not(:disabled) {
     display: inline-flex; gap: .5rem; align-items: center;
     height: 2rem; border-radius: .5rem;
     box-sizing: border-box; padding-inline: 1rem;
@@ -663,12 +663,12 @@ progress, meter { /* Progress indicators */
     text-overflow: ellipsis; white-space: nowrap; overflow: hidden; 
     min-width: fit-content;
 
-    &>span {
-      display: contents;
-      
+    &>span { display: contents; }
+
+    &>span, &:is(a) {
       &::before, &::after {
         display: block; width: 1.125rem; aspect-ratio: 1;
-        background-color: var(--primary);
+        background-color: var(--primary); margin-inline: 0;
       }
       &::before { margin-inline-start: -0.5rem; }
       &::after  { margin-inline-end:   -0.5rem; }
@@ -678,7 +678,7 @@ progress, meter { /* Progress indicators */
       position: absolute; width: 0; height: 0; overflow: hidden; clip-path: rect(0 0 0 0);
     }
 
-    &:has(>input:not(:checked):not(.elevated)) { border: 0.0625rem solid var(--outline); padding-inline: .9375rem; }
+    &:has(>input:not(:checked):not(.elevated)), &:is(a) { border: 0.0625rem solid var(--outline); padding-inline: .9375rem; }
     &:has(>input:checked) { background-color: var(--secondary-container); --color: var(--on-secondary-container); }
     &:has(>input:checked:disabled) { background-color: var(--disabled12on38); }
     &:has(>input:disabled) {
